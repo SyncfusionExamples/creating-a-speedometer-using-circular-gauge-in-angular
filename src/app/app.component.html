@@ -1,0 +1,133 @@
+<style>
+  .control-section {
+    margin-top: 100px;
+  }
+
+  @media (max-width: 650px) {
+    .control-section {
+      width: 650px;
+    }
+  }
+</style>
+<div class="control-section">
+  <ejs-circulargauge id="speedGauge" style="display:block;min-width:250px" width="100%" height="100%" background="black"
+    (resized)="resize($event)">
+    <e-axes>
+      <e-axis radius="70%" startAngle="230" endAngle="130" minimum="0" maximum="200" [majorTicks]="outerSpeedMajorTicks"
+        [minorTicks]="outerSpeedMinorTicks" [lineStyle]="outerSpeedLineStyle" [labelStyle]="outerSpeedLabelStyle">
+        <e-annotations>
+          <e-annotation
+            content='<div style="color:white;font-size:14px;font-weight:700;font-family:sans-serif;">Km/h</div>'
+            angle="360" radius="40%" zIndex="1">
+          </e-annotation>
+          <e-annotation content="<div style='width: 8px;height: 8px;background-color: red;border-radius: 50%;''></div>"
+            angle="297" radius="56%" zIndex="1">
+          </e-annotation>
+          <e-annotation
+            content='<div style=" border-radius: 10px; justify-content: center;  width: 65px; height: 25px; background-color: #414141;"><div style="padding-top:5px;text-align:center;color:white;font-weight:700;font-family:sans-serif;">35758</div></div>'
+            angle="185" radius="40%" zIndex="1">
+          </e-annotation>
+          <e-annotation [content]="RpmTemplate" angle="290" radius="0%" zIndex="1">
+          </e-annotation>
+          <e-annotation [content]="OuterRimTemplate" angle="90" radius="0%" zIndex="1">
+          </e-annotation>
+          <e-annotation [content]="FuelTemplate" angle="290" radius="0%" zIndex="1">
+          </e-annotation>
+          <e-annotation [content]="TemperatureTemplate" angle="290" radius="0%" zIndex="1">
+          </e-annotation>
+        </e-annotations>
+        <e-pointers>
+          <e-pointer value="20" radius="55%" pointerWidth="8" [needleStartWidth]="2" [needleEndWidth]="2"
+            color="#C10016" [animation]="animation" [cap]="outerSpeedCap" [needleTail]="outerSpeedTail">
+          </e-pointer>
+          <e-pointer value="200" pointerWidth="10" type="RangeBar" color="#000E43" radius="98%" [animation]="animation">
+          </e-pointer>
+        </e-pointers>
+      </e-axis>
+    </e-axes>
+  </ejs-circulargauge>
+</div>
+
+<ng-template #RpmGaugeTemplateRef>
+  <ejs-circulargauge id="rpmGauge" style="display:block; margin-left: -125%;margin-top:-60%" width="250px"
+    height="250px" background="transparent">
+    <e-axes>
+      <e-axis startAngle="200" endAngle="46" minimum="0" maximum="9" radius="100%" [majorTicks]="outerRpmMajorTicks"
+        [minorTicks]="outerRpmMinorTicks" [lineStyle]="outerRpmLineStyle" [labelStyle]="outerRpmLabelStyle">
+        <e-annotations>
+          <e-annotation
+            content='<div style="font-size:10px;color:white;font-weight:300;font-family:sans-serif;">x1000r/min</div>'
+            angle="0" radius="30%" zIndex="1">
+          </e-annotation>
+        </e-annotations>
+        <e-pointers>
+          <e-pointer value="1" radius="50%" pointerWidth="4" [needleStartWidth]="2" [needleEndWidth]="2" color="#C10016"
+            [animation]="animation" [cap]="outerRpmCap" [needleTail]="outerRpmNeedleTail">
+          </e-pointer>
+          <e-pointer value="9" pointerWidth="10" type="RangeBar" color="#000E43" radius="96%" [animation]="animation">
+          </e-pointer>
+        </e-pointers>
+      </e-axis>
+    </e-axes>
+  </ejs-circulargauge>
+</ng-template>
+
+<ng-template #OuterRimGaugeTemplateRef>
+  <ejs-circulargauge id="outerRimGauge" style="display:block; margin-left: 20%;margin-top:-60%" width="250px"
+    height="250px" background="transparent">
+    <e-axes>
+      <e-axis startAngle="319" endAngle="150" minimum="0" maximum="12" [majorTicks]="outerRimMajorTicks"
+        [minorTicks]="outerRimMinorTicks" [lineStyle]="outerRimLineStyle" [labelStyle]="outerRimLabelStyle">
+        <e-annotations>
+          <e-annotation content='<div><img src="assets/images/petrol.png" style="width:15px;height:15px"></img></div>'
+            angle="43" radius="49%" zIndex="1">
+          </e-annotation>
+          <e-annotation content='<div><img src="assets/images/engine.png" style="width:18px;height:18px"></img></div>'
+            angle="185" radius="21%" zIndex="1">
+          </e-annotation>
+        </e-annotations>
+        <e-pointers>
+          <e-pointer value="12" pointerWidth="10" type="RangeBar" color="#000E43" radius="96%" [animation]="animation">
+          </e-pointer>
+        </e-pointers>
+      </e-axis>
+    </e-axes>
+  </ejs-circulargauge>
+</ng-template>
+
+<ng-template #FuelGaugeTemplateRef>
+  <ejs-circulargauge id="fuelGauge" style="display:block; margin-left: 25%;margin-top:-76%" width="250px" height="250px"
+    background="transparent">
+    <e-axes>
+      <e-axis startAngle="220" endAngle="340" radius="30%" minimum="0" maximum="40" [majorTicks]="outerFuelMajorTicks"
+        [minorTicks]="outerFuelMinorTicks" [lineStyle]="outerFuelLineStyle" [labelStyle]="outerFuelLabelStyle">
+        <e-pointers>
+          <e-pointer value="39" radius="44%" pointerWidth="4" [needleStartWidth]="1" [needleEndWidth]="1"
+            color="#C10016" [animation]="animation" [cap]="outerFuelCap" [needleTail]="outerFuelNeedleTail">
+          </e-pointer>
+        </e-pointers>
+      </e-axis>
+    </e-axes>
+  </ejs-circulargauge>
+</ng-template>
+
+<ng-template #TemperatureGaugeTemplateRef>
+  <ejs-circulargauge id="temparatureGauge" style="display:block; margin-left: 45%;margin-top:-50%" width="250px"
+    height="250px" background="transparent">
+    <e-axes>
+      <e-axis startAngle="240" endAngle="320" radius="40%" minimum="0" maximum="10"
+        [majorTicks]="outerTemperatureMajorTicks" [minorTicks]="outerTemperatureMinorTicks"
+        [lineStyle]="outerTemperatureLineStyle" [labelStyle]="outerTemperatureLabelStyle">
+        <e-pointers>
+          <e-pointer value="0.2" radius="50%" pointerWidth="4" [needleStartWidth]="1" [needleEndWidth]="1"
+            color="#C10016" [animation]="animation" [cap]="outerTemperatureCap"
+            [needleTail]="outerTemperatureNeedleTail">
+          </e-pointer>
+          <e-pointer value="10" type="Marker" markerShape="Rectangle" markerWidth="17" color="#0D27B7" markerHeight="8"
+            radius="84%" [animation]="animation">
+          </e-pointer>
+        </e-pointers>
+      </e-axis>
+    </e-axes>
+  </ejs-circulargauge>
+</ng-template>
